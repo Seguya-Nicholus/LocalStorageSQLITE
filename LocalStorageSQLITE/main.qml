@@ -1,0 +1,55 @@
+import QtQuick 2.12
+import QtQuick.Controls 2.5
+import QtQuick.LocalStorage 2.12
+import 'JsMain.js' as JsMain
+
+
+ApplicationWindow {
+    visible: true
+    width: 640
+    height: 480
+    title: qsTr("Local Storage Application")
+
+    // Database identifier
+    property string dbId: "MyDatabase"
+
+    // Database version
+    property string dbVersion: "1.0"
+
+    // Database Description
+    property string dbDescription: "Database Application"
+
+    // Estimated Database Size
+    property int dbSize: 100000
+
+    // Database
+    property var db;
+
+
+    // Constructor
+    Component.onCompleted: {
+        JsMain.runInitialConfiguration();
+    }
+
+    /*
+        Stackview main Application where the screens move
+
+    */
+
+    StackView{
+        id: stackView
+        initialItem: dataForm
+    }
+
+    // Data visualization form
+    Component{
+        id: dataForm
+        DataForm{}
+    }
+
+    // Input form
+    Component{
+        id: inputForm
+        InputForm{}
+    }
+}
